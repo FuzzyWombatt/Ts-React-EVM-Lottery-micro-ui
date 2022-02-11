@@ -136,6 +136,11 @@ describe('Lottery', () => {
     });
     //use the accounts at the end as they haven't run through any test
     it('Runs through entire contract end to end', async () => {
+        //this test balance is here because balances weren't the standard 100 but 1000?
+        let testBalance = await web3.eth.getBalance(accounts[5]);
+        testBalance = parseFloat(web3.utils.fromWei(testBalance, 'ether'));
+        chaiAssert.equal(testBalance, 1000)
+
         await web3.eth.sendTransaction({
             to: contract.options.address,
             from: accounts[7],
