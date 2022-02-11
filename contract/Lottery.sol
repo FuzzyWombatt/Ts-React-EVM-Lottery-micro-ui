@@ -5,12 +5,19 @@ pragma solidity >=0.5.0 <0.9.0;
 contract Lottery{
     address public manager;
     address payable[] private players;
+    //for testing purposes of random
+    uint public index;
+
+    modifier notOwner {
+        require(msg.sender != manager);
+        _;
+    }
 
     constructor(){
         manager = msg.sender;
     }
 
-    receive() external payable{
+    receive() external payable notOwner{
         require(msg.value == 0.1 ether);
 
         players.push(payable(msg.sender));
@@ -34,7 +41,7 @@ contract Lottery{
         require(msg.sender == manager);
         require(players.length >= 3);
 
-        uint index = random() % players.length;
+        index = random() % players.length;
 
         players[index].transfer(getBalance());
 
