@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "chai": "^4.3.6",
+    "concurrently": "^7.0.0",
     "create-react-app": "^5.0.0",
     "ganache": "^7.0.2",
     "mocha": "^9.2.0",
@@ -8,8 +9,10 @@
     "web3": "^1.7.0"
   },
   "type": "module",
-
   "scripts": {
-    "test": "mocha contract/test"
+    "test": "mocha contract/test",
+    "build": "node build.js",
+    "deploy": "node deploy.js"
+
   }
 }

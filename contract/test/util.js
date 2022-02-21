@@ -34,3 +34,4 @@ export const compile = (contract) => {
 
     return { bytecode, abi };
 };
+
